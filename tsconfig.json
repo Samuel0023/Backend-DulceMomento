@@ -13,6 +13,6 @@
     },
     "include": [
         "./source/**/*"
-      ],
+, "main.ts"      ],
     "exclude": ["node_modules"]
 }

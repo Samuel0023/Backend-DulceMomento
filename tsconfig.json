@@ -11,11 +11,16 @@
       "noEmit": false,
       "resolveJsonModule": true,
       "noUnusedLocals": true,
-      "outDir": "./dist"
+      "outDir": "./dist",
+      "baseUrl": "./source",
+      "paths": {
+        "@infrastructure/*": ["./infrastructure/*"],
+        "@application/*": ["application/*"],
+        "@domain/*": ["domain/*"]
+      }
     },
     "include": [
       "source/**/**.ts"
     ],
     "exclude": ["node_modules"]
   }
-  

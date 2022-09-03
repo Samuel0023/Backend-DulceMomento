@@ -1,18 +1,21 @@
 {
     "compilerOptions": {
-        "strict": true,
-        "target": "es5",
-        "lib": ["es6"],
-        "types": ["reflect-metadata"],
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true,
-        "forceConsistentCasingInFileNames": true,
-        "esModuleInterop": true
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "target": "es6",
+      "noImplicitAny": true,
+      "moduleResolution": "node",
+      "sourceMap": false,
+      "rootDir": ".",
+      "strict": true,
+      "noEmit": false,
+      "resolveJsonModule": true,
+      "noUnusedLocals": true,
+      "outDir": "./dist"
     },
     "include": [
-        "./source/**/*"
-, "main.ts"      ],
+      "source/**/**.ts"
+    ],
     "exclude": ["node_modules"]
-}
+  }
+  

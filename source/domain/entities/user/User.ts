@@ -1,6 +1,6 @@
 import { EntityRoot } from '../EntityRoot'
 import { AgeNotProvided } from './exceptions'
-import { UserAge, UserId, UserName, UserMail, UserContact} from './valueObjects'
+import { UserAge, UserId, UserName, UserMail, UserContact, UserPassword } from './valueObjects'
 
 interface PrimitiveData {
   id: string
@@ -17,42 +17,47 @@ export class User extends EntityRoot<User, PrimitiveData> {
   readonly usermail: UserMail
   readonly age?: UserAge
   readonly contact: UserContact
-  readonly password?: UserPassword
+  readonly password: UserPassword
+  mail: any
 
   constructor ({
     id,
     name,
     usermail,
     age,
-    contact
-  }: { id: UserId, name: UserName, usermail: UserMail, age?: UserAge, contact: UserContact}) {
+    contact,
+    password
+  }: { id: UserId, name: UserName, usermail: UserMail, age?: UserAge, contact: UserContact, password: UserPassword}) {
     super()
     this.id = id
     this.name = name
     this.usermail = usermail
     this.age = age
     this.contact = contact
+    this.password = password
   }
 
-  static create (id: UserId, name: UserName, usermail: UserMail, contact: UserContact, age?: UserAge): User {
+  static create (id: UserId, name: UserName, usermail: UserMail, contact: UserContact, password: UserPassword, age?: UserAge): User {
     const user = new User({
       id,
       name,
       usermail,
       age,
-      contact
+      contact,
+      password
     })
 
     return user
   }
 
-  static fromPrimitives (plainData: { id: string, name: string, usermail: string, age?: number , contact: number}): User {
+  static fromPrimitives (plainData: { id: string, name: string, usermail: string, age?: number, contact: number, password: string}): User {
     return new User({
       id: new UserId(plainData.id),
       name: new UserName(plainData.name),
       usermail: new UserMail(plainData.usermail),
       age: new UserAge(plainData.age),
-      contact: new UserContact(plainData.contact)
+      contact: new UserContact(plainData.contact),
+      password: new UserPassword(plainData.password)
     })
   }
 
@@ -62,7 +67,8 @@ export class User extends EntityRoot<User, PrimitiveData> {
       name: this.name._value,
       usermail: this.usermail._value,
       age: this.age?._value,
-      contact: this.contact._value
+      contact: this.contact._value,
+      password: this.password._value
     }
   }
 

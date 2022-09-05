@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { DynamoDBUserRepository } from '@infrastructure/implementations/Aws/dynamo-db/DynamoDBUserRepository'
-import { UserCreatorUseCase } from '@application/usecases/UserCreator'
+import { UserCreatorUseCase } from '@application/usercases/UserCreator'
 import { UuidV4Generator } from '@infrastructure/UuidV4Generator'
 
 export const createUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {

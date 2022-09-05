@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { DynamoDBUserRepository } from '../../../../implementations/Aws/dynamo-db/DynamoDBUserRepository'
-import { UserGetterUseCase } from '../../../../../application/usecases/UserGetter'
+import { UserGetterUseCase } from '../../../../../application/usercases/UserGetter'
 
 export const getAllUsers = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   const dynamoDBUserRepo = new DynamoDBUserRepository()

@@ -1,5 +1,5 @@
 import { User } from 'domain/entities/user/User'
-import { UserRepository } from 'domain/repositories/UserRepository'
+import { UserRepository } from '@domain/repositories/UserRepository'
 
 export class InMemoryUserRepository implements UserRepository {
   private userData: User[] = []

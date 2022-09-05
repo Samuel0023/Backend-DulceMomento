@@ -1,5 +1,5 @@
 import { User } from '../../../domain/entities/user/User'
-import { UserAge, UserId, UserName, UserUserName } from '../../../domain/entities/user/valueObjects'
+import { UserAge, UserId, UserName, UserMail, UserContact } from '../../../domain/entities/user/valueObjects'
 import { UserRepository } from '../../../domain/repositories/UserRepository'
 import { ExistUserByUserName } from '../../../domain/services/ExistUserByUserName'
 import { UuidGenerator } from '@domain/utils/uuidGenerator'
@@ -8,7 +8,8 @@ import { UserIsNotAnAdultException, UserAlreadyExistsException } from '@domain/e
 interface UserInput {
   name: string
   age: number
-  username: string
+  mail: string
+  contact: number
 }
 
 export class UserCreatorUseCase {
@@ -26,11 +27,12 @@ export class UserCreatorUseCase {
     const user = new User({
       id: new UserId(this._uuidGenerator.generate()),
       name: new UserName(params.name),
-      username: new UserUserName(params.username),
-      age: new UserAge(params.age)
+      usermail: new UserMail(params.mail),
+      age: new UserAge(params.age),
+      contact: new UserContact(params.contact)
     })
 
-    const existUser: boolean = await this._existUserByUserName.run(user.username._value)
+    const existUser: boolean = await this._existUserByUserName.run(user.usermail._value)
 
     if (existUser) throw new UserAlreadyExistsException()
 

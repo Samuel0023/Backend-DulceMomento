@@ -44,3 +44,13 @@ export class UserContact {
     this._value = value
   }
 }
+
+export class UserPassword {
+  readonly _value: string
+
+  constructor(value?: string) {
+    if (value === undefined) throw new PasswordNotProvided()
+
+    this._value = value
+  }
+}

@@ -13,9 +13,16 @@ export class AgeNotProvided extends Exception {
     this.spanishMessage = 'Edad no suministrada'
   }
 }
-export class InvalidContact extends Exception {
-  constructor() {
+export class ContactNotProvided extends Exception {
+  constructor () {
     super('Contact not provided')
     this.spanishMessage = 'Contacto no ingresado'
+  }
+}
+
+export class PasswordNotProvided extends Exception {
+  constructor () {
+    super('Password not provided')
+    this.spanishMessage = 'Contrasenia no ingresado'
   }
 }

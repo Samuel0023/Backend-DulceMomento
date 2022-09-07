@@ -1,24 +1,28 @@
 import { User } from '../../../domain/entities/user/User'
-import { UserAge, UserId, UserName, UserUserName } from '../../../domain/entities/user/valueObjects'
+import { UserAge, UserId, UserName, UserMail, UserContact, UserPassword } from '../../../domain/entities/user/valueObjects'
 import { UserRepository } from '../../../domain/repositories/UserRepository'
 import { ExistUserByUserName } from '../../../domain/services/ExistUserByUserName'
-import { UuidGenerator } from '@domain/utils/uuidGenerator'
+import { UuidGenerator, BcryptEncryter } from '@domain/utils'
 import { UserIsNotAnAdultException, UserAlreadyExistsException } from '@domain/exceptions'
 
 interface UserInput {
   name: string
   age: number
-  username: string
+  mail: string
+  contact: number
+  password: string
 }
 
 export class UserCreatorUseCase {
   private readonly _userResposiory: UserRepository
   private readonly _existUserByUserName: ExistUserByUserName
   private readonly _uuidGenerator: UuidGenerator
+  private readonly _bcryptEncryter: BcryptEncryter
 
-  constructor (userRepository: UserRepository, uuidGenerator: UuidGenerator) {
+  constructor (userRepository: UserRepository, uuidGenerator: UuidGenerator, bcryptEncryter: BcryptEncryter) {
     this._userResposiory = userRepository
     this._uuidGenerator = uuidGenerator
+    this._bcryptEncryter = bcryptEncryter
     this._existUserByUserName = new ExistUserByUserName(userRepository)
   }
 
@@ -26,11 +30,13 @@ export class UserCreatorUseCase {
     const user = new User({
       id: new UserId(this._uuidGenerator.generate()),
       name: new UserName(params.name),
-      username: new UserUserName(params.username),
-      age: new UserAge(params.age)
+      usermail: new UserMail(params.mail),
+      age: new UserAge(params.age),
+      contact: new UserContact(params.contact),
+      password: new UserPassword(this._bcryptEncryter.encryt(params.password))
     })
 
-    const existUser: boolean = await this._existUserByUserName.run(user.username._value)
+    const existUser: boolean = await this._existUserByUserName.run(user.usermail._value)
 
     if (existUser) throw new UserAlreadyExistsException()
 

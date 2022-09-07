@@ -4,8 +4,12 @@
   "description": "api-dulce-momento",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon ./source/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-console-app": "nodemon ./source/infrastructure/driving-adapters/console/console.ts",
+    "start-rest-app": "nodemon ./source/infrastructure/driving-adapters/api-rest/start.ts",
+    "dev": "nodemon ./source/infrastructure/driving-adapters/start.ts",
+    "lint:js": "eslint . --ext .js",
+    "lint:js:fix": "npm run lint:js -- --fix"
   },
   "author": "Samuel0023",
   "license": "MIT",
@@ -14,11 +18,14 @@
     "npm": ">=6.7.0"
   },
   "dependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/sequelize": "^4.28.14",
     "apollo-server-express": "^3.7.0",
     "dotenv": "^14.3.2",
     "express": "^4.17.2",
     "graphql": "^16.5.0",
     "module-alias": "^2.2.2",
+    "sequelize-cli": "^6.4.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

@@ -1,5 +1,10 @@
 import { Uuid } from '@domain/valueObjects/Uuid'
-import { InvalidUserAge, AgeNotProvided } from './exceptions'
+import {
+  InvalidUserAge,
+  AgeNotProvided,
+  PasswordNotProvided,
+  ContactNotProvided
+} from './exceptions'
 
 export class UserId extends Uuid {
   constructor (value: string) {
@@ -38,8 +43,18 @@ export class UserAge {
 export class UserContact {
   readonly _value: number
 
-  constructor(value?: number) {
-    if (value === undefined) throw new InvalidUserAge()
+  constructor (value?: number) {
+    if (value === undefined) throw new ContactNotProvided()
+
+    this._value = value
+  }
+}
+
+export class UserPassword {
+  readonly _value: string
+
+  constructor (value?: string) {
+    if (value === undefined) throw new PasswordNotProvided()
 
     this._value = value
   }

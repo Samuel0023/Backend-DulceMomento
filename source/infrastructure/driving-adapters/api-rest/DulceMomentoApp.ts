@@ -1,6 +1,6 @@
 import { Server } from './Server'
 
-export class TuttoDataFakerBackendApp {
+export class DulceMomentoApp {
   server?: Server
 
   async start (): Promise<void> {

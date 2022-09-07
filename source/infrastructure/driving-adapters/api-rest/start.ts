@@ -1,13 +1,13 @@
 import path from 'path'
 import * as dotenv from 'dotenv'
-import { TuttoDataFakerBackendApp } from './TuttoDataFakerBackendApp'
+import { DulceMomentoApp } from './DulceMomentoApp'
 
 try {
   dotenv.config({
     path: path.resolve(__dirname, '../../../../.env')
   })
 
-  new TuttoDataFakerBackendApp().start()
+  new DulceMomentoApp().start()
 } catch (error) {
   console.log(error)
 }

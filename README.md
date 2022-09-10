@@ -10,7 +10,7 @@ npm install
 
 ``` bash
 npm start
-npm test": "echo \"Error: no test specified\" && exit 1",
-    "start-console-app": "nodemon ./source/infrastructure/driving-adapters/console/console.ts",
-    "start-rest-app": "nodemon ./source/infrastructure/driving-adapters/api-rest/start.ts",
+npm run test
+npm run start-console-app
+npm run start-rest-app
 ```

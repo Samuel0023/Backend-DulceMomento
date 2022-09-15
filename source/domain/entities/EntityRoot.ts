@@ -1,3 +1,3 @@
-export abstract class EntityRoot<Entity, PrimitiveData> {
+export abstract class EntityRoot<PrimitiveData> {
   abstract toPrimitives (): PrimitiveData
 }

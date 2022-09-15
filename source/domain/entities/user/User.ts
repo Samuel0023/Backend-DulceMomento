@@ -1,24 +1,14 @@
 import { EntityRoot } from '../EntityRoot'
 import { AgeNotProvided } from './exceptions'
 import { UserAge, UserId, UserName, UserMail, UserContact, UserPassword } from './valueObjects'
-
-interface PrimitiveData {
-  id: string
-  name: string
-  usermail: string
-  age?: number
-  contact: number
-  password: string
-}
-
-export class User extends EntityRoot<User, PrimitiveData> {
+import UserPrimitiveData from './UserDTO'
+export class User extends EntityRoot<UserPrimitiveData> {
   readonly id: UserId
   readonly name: UserName
   readonly usermail: UserMail
   readonly age?: UserAge
   readonly contact: UserContact
   readonly password: UserPassword
-  mail: any
 
   constructor ({
     id,
@@ -61,7 +51,7 @@ export class User extends EntityRoot<User, PrimitiveData> {
     })
   }
 
-  toPrimitives (): PrimitiveData {
+  toPrimitives (): UserPrimitiveData {
     return {
       id: this.id._value,
       name: this.name._value,

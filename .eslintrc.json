@@ -3,6 +3,8 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "plugins": ["hexagonal-architecture"],
+  
   "rules": {
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
@@ -14,5 +16,14 @@
   "ignorePatterns": [
     "dist",
     "src/**/*.js"
+  ],
+  "overrides": [
+    {
+      "files": ["contexts/{backend,frontend}/*/src/**/*.ts"],
+      "rules": {
+        "hexagonal-architecture/enforce": ["error"]
+      }
+    }
   ]
+
 }

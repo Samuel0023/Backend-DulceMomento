@@ -12,9 +12,9 @@
     "skipLibCheck": true,
     "strictPropertyInitialization": false,
     "paths": {
-      "@infrastructure/*": ["./infrastructure/*"],
-      "@application/*": ["application/*"],
-      "@domain/*": ["domain/*"]
+      // "@infrastructure/*": ["./infrastructure/*"],
+      // "@application/*": ["application/*"],
+      // "@domain/*": ["domain/*"]
     }
   }
 }
